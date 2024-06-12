@@ -2,8 +2,6 @@ from pathlib import Path
 import os
 
 from decouple import config
-from dotenv import load_dotenv
-load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY') if 'SECRET_KEY' in os.environ['SECRET_KEY'] else config('SECRET_KEY')
 
