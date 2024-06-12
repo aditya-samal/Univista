@@ -1,6 +1,12 @@
 from pathlib import Path
 import os
 
+from decouple import config
+from dotenv import load_dotenv
+load_dotenv()
+
+SECRET_KEY = os.getenv('SECRET_KEY') if 'SECRET_KEY' in os.environ['SECRET_KEY'] else config('SECRET_KEY')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -110,8 +116,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static') 
-STATIC_URL = '/static'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles_build')]
+STATIC_URL = '/staticfiles/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
