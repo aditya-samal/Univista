@@ -1,0 +1,91 @@
+body{
+    margin:0px;
+    overflow-x: hidden;
+    height: 100vh;
+   
+}
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.wrapper{
+    max-width: 75%;
+    margin: auto;
+}
+.wrapper > h2,
+.wrapper > h1{
+    margin:1.5rem 0;
+}
+.accordion{
+    background-color: whitesmoke;
+    color: rgb(134, 90, 9);
+    cursor:pointer;
+    font-size: 1.3rem;
+    width:100%;
+    padding: 2rem 2.5rem;
+    border:none;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
+   
+}
+.accordion i{
+    font-size: 1.6rem;
+} 
+
+.accordion:hover{
+    color: white;
+    background-color: rgb(118, 81, 12);
+    scale: 1.02;
+    transition-duration: 0.5s;
+    cursor: pointer;
+
+}
+.pannel{
+    padding: 0.5rem 2rem 2.5rem 2rem;
+    overflow: hidden;
+    display: none;
+}
+.pannel p{
+    color: rgba(1,1,1,0.7);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+.faq{
+   border: 1px solid white;
+   margin-bottom: 20px;
+}
+
+.Navbar{
+    background-image: url(Nav_back.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:100% 100%;
+    box-shadow:0px 4px 8px 0px rgba(0,0,0 ,0.8);
+    height: 15%;
+    position:sticky;
+    width: 100%;
+    align-items: center;
+    top: 0;
+
+}
+.chart{
+    background-color:white;
+    color: rgb(134, 90, 9);
+    padding: 10px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 5px;
+}
+.chart:hover{
+    color: white;
+    background-color: rgb(118, 81, 12);
+    scale: 1.02;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}

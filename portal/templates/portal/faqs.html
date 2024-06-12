@@ -1,0 +1,355 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'portal/faqs.css' %}">
+{% endblock stylesheet %}    
+{% block content %}  
+       <div class="wrapper">
+            <h2>Quick peek
+                <i class="fa fa-eyes"></i>
+            </h2>
+            <h1>Frequently Asked Questions(FAQs)</h1>
+            <div class="faq">
+                <button class="accordion">
+                    <p>What is the prefernce of students: a circuital branch in newer IITS or a core branch in older IITS?</p>
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>This question has been a matter of debate since many years and students really face a hard time choosing between the two.
+                       Now, let's take a look at the cutoffs of IITG CSE vs IITD EEE and IITB Civil vs IITP CSE.</p>
+                       <div id="canvas">
+                        <canvas id="myChart"></canvas>
+                        <hr>
+                        <button class="chart" id="line">Line Chart</button>
+                        <button class="chart" id="bar">Bar Chart</button>
+                     </div>
+                    <p> EEE in IIT Delhi was more favourable in the past years but now the cutoffs have become almost at par with IITG CSE. Similar trend can be seen between IITB Civil and IITP CSE, where the latter is in more demand recently.
+                        Hence, it can be seen that students are preferring circuital branches in tier 2 IITS over core ones in tier 1.
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="faq">
+                <button class="accordion">
+                    Which branch is getting more popular in the recent years?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>Apart from Computer Science and Engineering, circuital branches like Mathematics and Computing, Data Science and Artificial Intelligence, Information Technology and so on are evolving rapidly.
+                        Let us look at the given data which shows the cutoffs of EEE, ME, MNC and DSAI branches of IITG.
+                    </p>
+                    <div id="canvas2">
+                        <canvas id="myChart2"></canvas>
+                        <hr>
+                        <button class="chart">Line Chart</button>
+                        <button class="chart">Bar Chart</button>
+                     </div>
+                </div>
+            </div>
+            <div class="faq">
+                <button class="accordion">
+                    What is the mindset of the students towards lower branches of IITS? Where do those branches fall in their preference list?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>In 2023, there were a total of 335 vacant seats across IITs after the final round of admissions. Additionally, there were significant vacancies in NITs, with 4,406 seats available in the first round of CSAB counselling​.
+                         This is indiactive of the fact that students are ready to give up on the iitian tag for the sake of branches. Many students go for tech oriented branches in lower colleges than lower branches in IITS or NITS.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq">
+                <button class="accordion">
+                     Are IITs overrated? Are IITs worth the hype?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>To determine whether IITs are overrated, we need to analyze them across various dimensions.
+                        Let us first start off with alumni success:IITs have nurtured some of the great personalities of the country.Notable examples include Sundar Pichai (CEO of Google and Alphabet Inc.), N. R. Narayana Murthy (co-founder of Infosys), K. Radhakrishnan(former Chairman of ISRO),Arvind Krishna (CEO of IBM)  and many more.
+                        Many IITians have founded successful startups, contributing to India's burgeoning tech ecosystem.
+                        <br>
+                        <br>
+                        Coming to rankings, IITs often rank highly in subject-specific areas, particularly in engineering and technology, but they generally lag behind in global university rankings.
+
+                    </p>
+                    <div id="canvas3">
+                        <canvas id="myChart3"></canvas>
+                        <hr>
+                        <button class="chart">Line Chart</button>
+                        <button class="chart">Bar Chart</button>
+                     </div>
+                     <p>Coming to mental health,the competitive environment can foster resilience and coping skills among students but on the contrary, the intense competition and academic pressure leads to stress, anxiety, and in extreme cases, suicides.</p>
+                     <p>If we focus on the quality of students and the rigor of academic programs,advanced research and development, IITs worth the hype. If the emphasis is on mental health, student well-being, and global recognition, IITs might appear overrated to some.</p>
+                     <p>IITs have significant strengths, particularly in academic rigor, alumni success, and infrastructure, there are areas that warrant critical attention such as mental health, global rankings, and disparity among campuses.
+                        
+                     </p>
+                </div>
+            </div>
+            <div class="faq">
+                <button class="accordion">
+                    Does getting into an IIT or NIT secure my career?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>Getting into an IIT or NIT provides career security. Let us analyze the statement across various domains. Firtsly, let us look at the placement percentage of IITS over the years.
+                        
+                    </p>
+                    <div id="canvas2">
+                        <canvas id="myChart2"></canvas>
+                        <hr>
+                        <button class="chart">Line Chart</button>
+                        <button class="chart">Bar Chart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="faq">
+                <button class="accordion">
+                    Why is India producing so many engineers but no engineering marvels?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>Apart from Computer Science and Engineering, circuital branches like Mathematics and Computing, Data Science and Artificial Intelligence, Information Technology and so on are evolving rapidly.
+                        Let us look at the given data which shows the cutoffs of EEE, ME, MNC and DSAI branches of IITG.
+                    </p>
+                    <div id="canvas2">
+                        <canvas id="myChart2"></canvas>
+                        <hr>
+                        <button class="chart">Line Chart</button>
+                        <button class="chart">Bar Chart</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+           
+
+{% endblock content%} 
+{% block scripts %}   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>     
+  <script>
+    
+    var data=[]
+d3.csv("{% static 'portal/data/File.csv' %}").then(function(datapoints){
+       data=datapoints
+       const iitg = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Guwahati' && r['Academic Program Name'] === 'Computer Science and Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const cr_g=[]
+       const iitd = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Delhi' && r['Academic Program Name'] === 'Electrical Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const cr_d=[]
+       const iitb = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Bombay' && r['Academic Program Name'] === 'Civil Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const cr_b=[]
+       const iitp = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Patna' && r['Academic Program Name'] === 'Computer Science and Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const cr_p=[]
+       const iitg_mnc = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Guwahati' && r['Academic Program Name'] === 'Mathematics and Computing (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const iitg_ai = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Guwahati' && r['Academic Program Name'] === 'Data Science and Artificial Intelligence (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const iitg_mech= data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Guwahati' && r['Academic Program Name'] === 'Mechanical Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+       const iitg_eee = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Guwahati' && r['Academic Program Name'] === 'Electronics and Electrical Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+
+       const cr_g_mnc=[]
+       const cr_g_ai=[]
+       const cr_g_mech=[]
+       const cr_g_eee=[]
+       
+       
+       for(i=0;i<iitg.length;i++)
+        {
+            cr_g.push(iitg[i]['Closing Rank'])
+            cr_d.push(iitd[i]['Closing Rank'])
+            cr_b.push(iitb[i]['Closing Rank'])
+            cr_p.push(iitp[i]['Closing Rank'])
+            cr_g_mech.push(iitg_mech[i]['Closing Rank'])
+            cr_g_eee.push(iitg_eee[i]['Closing Rank'])
+            cr_g_mnc.push(iitg_mnc[i]['Closing Rank'])
+        }
+        console.log(iitg_ai);
+        for(i=0;i<iitg_ai.length+5;i++)
+            {
+                if(i<5){
+                    cr_g_ai.push(0);
+                }
+                else{
+                    cr_g_ai.push(iitg_ai[i-5]['Closing Rank']) 
+                } 
+            }
+            console.log(cr_g_ai)
+        
+    //    const iitd = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Delhi' && r['Academic Program Name'] === 'Electrical Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+    //    const cr_d=[]
+    //    for(i=0;i<iitd.length;i++)
+    //     {
+    //         cr_d.push(iitd[i]['Closing Rank'])
+    //     }
+    //     const iitb = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Bombay' && r['Academic Program Name'] === 'Civil Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+    //     const cr_b=[]
+    //     for(i=0;i<iitb.length;i++)
+    //      {
+    //          cr_b.push(iitb[i]['Closing Rank'])
+    //      }
+    //      const iitp = data.filter(r=>  r['Institute'] === 'Indian Institute of Technology Patna' && r['Academic Program Name'] === 'Computer Science and Engineering (4 Years, Bachelor of Technology)' && r['Round']==6 && r['Seat Type'] == 'OPEN' && r['Gender'] == 'Gender-Neutral')
+    //      const cr_p=[]
+    //      for(i=0;i<iitp.length;i++)
+    //       {
+    //           cr_p.push(iitp[i]['Closing Rank'])
+    //       }
+
+const line=document.getElementById('line');
+const bar=document.getElementById('bar');
+
+line.addEventListener('click',changeline);
+bar.addEventListener('click',changebar);   
+       
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+const chart = new Chart(ctx,{
+    type:'bar',
+    data:{
+        labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
+        datasets: [{ label: 'CSE in IIT Guwahati',
+                     backgroundColor: 'rgb(255,99,132)',
+                     data:cr_g
+    },{
+                    label: 'EEE in IIT Delhi',
+                    backgroundColor: 'yellow',
+                    data:cr_d
+    },{
+                    label: 'Civil in IIT Bombay',
+                    backgroundColor: 'red',
+                    data:cr_b
+
+    },{            
+                    label: 'CSE in IIT Patna',
+                    backgroundColor: 'pink',
+                    data:cr_p
+
+    }]
+    
+    
+}
+});
+function changeline(){
+    const updatetype='line';
+    chart.config.type=updatetype;
+    chart.update();
+  
+}; 
+function changebar(){
+   const updatetype='bar';
+   chart.config.type=updatetype;
+   chart.update();
+   
+};
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+const chart2 = new Chart(ctx2,{
+    type:'line',
+    data:{
+        labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
+        datasets: [{ label: 'EEE IITG',
+                     backgroundColor: 'rgb(255,99,132)',
+                     data:cr_g_eee
+    },{
+                    label: 'ME IITG',
+                    backgroundColor: 'yellow',
+                    data:cr_g_mech
+    },{
+                    label: 'MNC IITG',
+                    backgroundColor: 'red',
+                    data:cr_g_mnc
+
+    },{            
+                    label: 'DSAI IITG',
+                    backgroundColor: 'pink',
+                    data:cr_g_ai
+
+    }]
+    
+    
+}
+});
+function changeline(){
+    const updatetype='line';
+    chart2.config.type=updatetype;
+    chart2.update();
+  
+}; 
+function changebar(){
+   const updatetype='bar';
+   chart2.config.type=updatetype;
+   chart2.update();
+   
+};
+
+
+
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+const chart3 = new Chart(ctx3,{
+    type:'bar',
+    data:{
+        labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+        datasets: [{ label: 'IISc Bangalore',
+                     backgroundColor: 'rgb(255,99,132)',
+                     data:[147,151,185,172,182,182,183,151,225]
+    },{
+                    label: 'IIT Delhi',
+                    backgroundColor: 'yellow',
+                    data:[179,183,175,179,190,185,180,176,197]
+    },{
+                    label: 'IIT Bombay',
+                    backgroundColor: 'red',
+                    data:[202,220,182,176,150,170,175,165,149]
+
+    }]
+    
+    
+}
+});
+function changeline(){
+    const updatetype='line';
+    chart3.config.type=updatetype;
+    chart3.update();
+  
+}; 
+function changebar(){
+   const updatetype='bar';
+   chart3.config.type=updatetype;
+   chart3.update();
+   
+};
+
+
+
+
+
+
+
+
+
+});
+
+       
+
+       
+
+
+
+var acc= document.querySelectorAll('.accordion');
+var i;
+for(i=0;i<acc.length;i++)
+    {
+        acc[i].addEventListener('click',function(){
+            
+
+            var pannel=this.nextElementSibling;
+            if(pannel.style.display === 'block'){
+                pannel.style.display = 'none';
+            }
+            else{
+                pannel.style.display = 'block';
+            }
+        });
+    }
+
+  </script>
+{% endblock scripts %}
+

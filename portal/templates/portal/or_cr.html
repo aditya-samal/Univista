@@ -1,0 +1,334 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'portal/or_cr.css' %}">
+{% endblock stylesheet %}
+{% block content %}
+<div class="content">
+    <h1 class="heading">Check OR-CR</h1>
+    <div class="details">
+        <div class="option1">
+            <label>Year</label>
+            <select id="year" name="year" onchange="add_round()">
+                <option value="" disabled selected>Select</option>
+                <option value="ALL">ALL</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+        </div>
+
+        <br>
+        <div class="option1">
+            <label>Round</label>
+            <select id="round" name="round" onchange="add_type()">
+                <option value="" disabled selected>Select</option>
+                <option value="ALL">ALL</option>
+            </select>
+        </div>
+
+        <br>            
+        <div class="option2">
+            <label>Institute Type</label>
+            <select id="type" name="type" onchange='add_name()'>
+                <option value="" disabled selected>Select</option>
+            </select>
+        </div>
+
+        <br>
+        
+        <div class="option2">
+            <label>Institute Name</label>
+            <select id="name" name="name" onchange="add_branch()">
+                <option value="" disabled selected>Select</option>
+            </select>
+        </div>
+
+        <br>
+        <div class="option3">
+            <label>Academic Program</label>
+            <select id="branch" name="branch" onchange="add_category()">
+                <option value="" disabled selected>Select</option>
+            </select>
+        </div>
+
+        <br>
+        <div class="option1">
+            <label>Category</label>
+            <select id="category" name="category" onchange="final()">
+                <option value="" disabled selected>Select</option>
+            </select>
+        </div>
+        <br>
+        <button class="submit" id="btnReset" onclick="Submit()">Submit</button>
+    </div>
+    <div class="table">
+        <table id="table">
+            <thead>
+                <tr class="table_header">
+                    <th>Sl.No</th>
+                    <th>Year</th>
+                    <th>Round</th>
+                    <th>Institute</th>
+                    <th>Branch</th>
+                    <th>Quota</th>
+                    <th>Category</th>
+                    <th>Gender</th>
+                    <th>OR</th>
+                    <th>CR</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnReset").bind("click", function () {
+            $("#type")[0].selectedIndex = 0;
+            $("#name")[0].selectedIndex = 0;
+            $("#branch")[0].selectedIndex = 0;
+            $("#year")[0].selectedIndex = 0;
+            $("#category")[0].selectedIndex = 0;
+            $("#round")[0].selectedIndex = 0;
+        });
+    });
+</script>
+<script>
+    var data = []
+   
+        d3.csv("{% static 'portal/data/File.csv' %}").then(function(datapoints){
+            data= datapoints 
+    })
+
+    year_data=[]
+
+    function add_round(){
+        year=document.getElementById('year').value
+        if(year=="ALL"){    
+            const filteredArray = data
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Round']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("round").innerHTML=commonOptions
+            year_data=filteredArray
+        }
+        else{
+            const filteredArray = data.filter(r=> r['Year']===year)
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Round']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("round").innerHTML=commonOptions
+            year_data=filteredArray
+        }
+    }
+
+    round_data=[]
+
+    function add_type(){
+        round=document.getElementById('round').value
+        if(round=="ALL"){    
+            const filteredArray = year_data
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Type']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("type").innerHTML=commonOptions
+            round_data=filteredArray
+        }
+        else{
+            const filteredArray = year_data.filter(r=> r['Round']===round)
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Type']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("type").innerHTML=commonOptions
+            round_data=filteredArray
+        }
+    }
+
+    type_data=[]
+
+    function add_name(){
+        type=document.getElementById('type').value
+        if(type=="ALL"){    
+            const filteredArray = round_data
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Institute']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("name").innerHTML=commonOptions
+            type_data=filteredArray
+        }
+        else{
+            const filteredArray = round_data.filter(r=> r['Type']===type)
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Institute']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("name").innerHTML=commonOptions
+            type_data=filteredArray
+        }
+    }
+
+    name_data=[]
+    function add_branch(){
+        inst_name=document.getElementById('name').value
+        if(inst_name=="ALL"){    
+            const filteredArray = type_data
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Academic Program Name']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("branch").innerHTML=commonOptions
+            name_data=filteredArray
+        }
+        else{
+            const filteredArray = type_data.filter(r=> r['Institute']===inst_name)
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Academic Program Name']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("branch").innerHTML=commonOptions
+            name_data=filteredArray
+        }
+        
+    }
+
+    branch_data = []
+
+    function add_category(){
+        branch=document.getElementById('branch').value
+        if(branch=="ALL"){    
+            const filteredArray = name_data
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Seat Type']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("category").innerHTML=commonOptions
+            branch_data = filteredArray
+        }
+        else{
+            const filteredArray = name_data.filter(r=> r['Academic Program Name']===branch)
+            console.log(filteredArray)
+            const uniquenames = new Set();
+            filteredArray.forEach(r => uniquenames.add(r['Seat Type']));
+            const uniquelist = [...uniquenames]
+            var commonOptions = "<option value='' disabled selected>Select</option>";
+            commonOptions+="<option value='ALL'>ALL</option>"
+            for (i in uniquelist){
+                commonOptions+="<option>"+uniquelist[i]+"</option>"
+            }
+            document.getElementById("category").innerHTML=commonOptions
+            branch_data = filteredArray
+        }
+        
+    }
+
+    final_data=[]
+
+    function final(){
+        category=document.getElementById('category').value
+        if(category=="ALL"){    
+            const filteredArray = name_data
+            final_data = filteredArray
+        }
+        else{
+            const filteredArray = branch_data.filter(r=> r['Seat Type']===category)
+            final_data = filteredArray
+        }
+        
+    }
+
+
+    function Submit(){
+
+        if (type !="" && inst_name !="" && branch !="" && year !="" && category !="" && round !="") {
+            
+            const table = document.getElementById("table").getElementsByTagName("tbody")[0];
+            var rowCount = table.rows.length;
+            
+            for (var i = rowCount -1; i >= 0; i--) {
+                table.deleteRow(i);
+            }
+
+            for (let i = 0; i < final_data.length; i++) {
+                row = table.insertRow(table.rows.length)
+                cell1 = row.insertCell(0)
+                cell2 = row.insertCell(1)
+                cell3 = row.insertCell(2)
+                cell4 = row.insertCell(3)
+                cell5 = row.insertCell(4)
+                cell6 = row.insertCell(5)
+                cell7 = row.insertCell(6)
+                cell8 = row.insertCell(7)
+                cell9 = row.insertCell(8)
+                cell10 = row.insertCell(9)
+                row.className='table_row'
+                
+                cell1.innerHTML = table.rows.length
+                cell2.innerHTML = final_data[i]['Year']
+                cell3.innerHTML = final_data[i]['Round']
+                cell4.innerHTML = final_data[i]['Institute']
+                cell5.innerHTML = final_data[i]['Academic Program Name']
+                cell6.innerHTML = final_data[i]['Quota']
+                cell7.innerHTML = final_data[i]['Seat Type']
+                cell8.innerHTML = final_data[i]['Gender']
+                cell9.innerHTML = final_data[i]['Opening Rank']
+                cell10.innerHTML = final_data[i]['Closing Rank']
+            }
+        }
+    
+    }
+</script>
+{% endblock scripts %}

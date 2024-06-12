@@ -1,0 +1,323 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'portal/choices.css' %}">
+{% endblock stylesheet %}
+{% block content %}
+
+    <div class="top">
+        <h2 class="heading">Compare your choices</h2>
+        <div class="details">
+            <div class="option1">
+                <label>Institute Type</label>
+                <select id="type" name="type" onchange='add_name()'>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Indian Institute of Technology">Indian Institute of Technology</option>
+                    <option value="National Institute of Technology">National Institute of Technology</option>
+                    <option value="Indian Institute of Information Technology">Indian Institute of Information Technology</option>
+                    <option value="Government Funded Technical Institutions">Government Funded Technical Instituitions</option>
+                </select>
+            </div>
+
+            <div class="option1">
+                <label>Institute Name</label>
+                <select id="name" name="name" onchange="add_branch()">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+
+
+            <div class="option2">
+                <label>Branch</label>
+                <select id="branch" name="branch" onchange="add_quota()">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+
+
+            <div class="option3">
+                <label>Quota</label>
+                <select id="quota" name="quota" onchange="add_category()">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            
+            <div class="option3">
+                <label>Category</label>
+                <select id="category" name="category" onchange="add_gender()">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            
+            <div class="option3">
+                <label>Gender</label>
+                <select id="gender" name="gender">
+                    <option value="" disabled selected>Select</option>
+                </select>
+            </div>
+            
+            <button  id="btnReset" onclick="Add_Chart()">Add Chart</button>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="canvas" id="canvas">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="table">
+            <table id="table">
+                <tr class="table_header">
+                    <th>Label</th>
+                    <th>Institute</th>
+                    <th>Branch</th>
+                    <th>Quota</th>
+                    <th>Category</th>
+                    <th>Gender</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnReset").bind("click", function () {
+            $("#type")[0].selectedIndex = 0;
+            $("#name")[0].selectedIndex = 0;
+            $("#branch")[0].selectedIndex = 0;
+            $("#quota")[0].selectedIndex = 0;
+            $("#category")[0].selectedIndex = 0;
+            $("#gender")[0].selectedIndex = 0;
+        });
+    });
+</script>
+<script>
+    
+    var data = []
+    d3.csv("{% static 'portal/data/File.csv' %}").then(function(datapoints){
+    data= datapoints
+    })
+
+    function add_name(){
+        type=document.getElementById('type').value
+        const filteredArray = data.filter(r=> r['Type']===type)
+        const uniquenames = new Set();
+        filteredArray.forEach(r => uniquenames.add(r['Institute']));
+        const uniquelist = [...uniquenames]
+        var commonOptions = "<option value='' disabled selected>Select</option>";
+        for (i in uniquelist){
+            commonOptions+="<option>"+uniquelist[i]+"</option>"
+        }
+        document.getElementById("name").innerHTML=commonOptions
+    }
+
+    function add_branch(){
+        inst_name=document.getElementById('name').value
+        const filteredArray = data.filter(r=> r['Institute']===inst_name)
+        const uniquenames = new Set();
+        filteredArray.forEach(r => uniquenames.add(r['Academic Program Name']));
+        const uniquelist = [...uniquenames]
+        var commonOptions = "<option value='' disabled selected>Select</option>";
+        for (i in uniquelist){
+            commonOptions+="<option>"+uniquelist[i]+"</option>"
+        }
+        document.getElementById("branch").innerHTML=commonOptions
+    }
+
+    function add_quota(){
+        inst_name=document.getElementById('name').value
+        branch=document.getElementById('branch').value
+        const filteredArray = data.filter(r=> (r['Academic Program Name']===branch && r['Institute']===inst_name))
+        const uniquenames = new Set();
+        filteredArray.forEach(r => uniquenames.add(r['Quota']));
+        const uniquelist = [...uniquenames]
+        var commonOptions = "<option value='' disabled selected>Select</option>";
+        for (i in uniquelist){
+            commonOptions+="<option>"+uniquelist[i]+"</option>"
+        }
+        document.getElementById("quota").innerHTML=commonOptions
+    }
+
+    function add_category(){
+        inst_name=document.getElementById('name').value
+        branch=document.getElementById('branch').value
+        quota=document.getElementById('quota').value
+        const filteredArray = data.filter(r=> (r['Quota']===quota && r['Academic Program Name']===branch && r['Institute']===inst_name))
+        const uniquenames = new Set();
+        filteredArray.forEach(r => uniquenames.add(r['Seat Type']));
+        const uniquelist = [...uniquenames]
+        var commonOptions = "<option value='' disabled selected>Select</option>";
+        for (i in uniquelist){
+            commonOptions+="<option>"+uniquelist[i]+"</option>"
+        }
+        document.getElementById("category").innerHTML=commonOptions
+    }
+
+    function add_gender(){
+        inst_name=document.getElementById('name').value
+        branch=document.getElementById('branch').value
+        quota=document.getElementById('quota').value
+        category = document.getElementById('category').value
+        const filteredArray = data.filter(r=> r['Gender'] !=="" && (r['Seat Type']===category && r['Quota']===quota && r['Academic Program Name']===branch && r['Institute']==inst_name))
+        const uniquenames = new Set();
+        filteredArray.forEach(r => uniquenames.add(r['Gender']));
+        const uniquelist = [...uniquenames]
+        var commonOptions = "<option value='' disabled selected> Select </option>";
+        for (i in uniquelist){
+            commonOptions+="<option>"+uniquelist[i]+"</option>"
+        }
+        document.getElementById("gender").innerHTML=commonOptions
+    }
+
+    label_data=65
+    const ctx = document.getElementById('myChart');
+    const mychart= new Chart(ctx, {
+        type: 'bar',
+        data: {
+        labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        datasets: [],
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Closing Rank'
+                        
+                    }
+                }
+            }
+        }
+    });
+
+
+    function Add_Chart(){
+        type=document.getElementById('type').value
+        inst_name=document.getElementById('name').value
+        branch=document.getElementById('branch').value
+        quota=document.getElementById('quota').value
+        category = document.getElementById('category').value
+        gender = document.getElementById('gender').value
+
+        if (type !="" && inst_name !="" && branch !="" && quota !="" && category !="" && gender !="") {
+            const filteredArray = data.filter(r=> (r['Gender']==gender && r['Seat Type']==category && r['Quota']===quota && r['Academic Program Name']===branch && r['Institute']===inst_name))
+        opening = []
+        closing = []
+        for (i in filteredArray) {
+            if (filteredArray[i]['Year']== 2016 && filteredArray[i]['Round']== 6){
+                opening[0] = filteredArray[i]['Opening Rank']
+                closing[0] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2017 && filteredArray[i]['Round']== 7){
+                opening[1] = filteredArray[i]['Opening Rank']
+                closing[1] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2018 && filteredArray[i]['Round']== 7){
+                opening[2] = filteredArray[i]['Opening Rank']
+                closing[2] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2019 && filteredArray[i]['Round']== 7){
+                opening[3] = filteredArray[i]['Opening Rank']
+                closing[3] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2020 && filteredArray[i]['Round']== 6){
+                opening[4] = filteredArray[i]['Opening Rank']
+                closing[4] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2021 && filteredArray[i]['Round']== 6){
+                opening[5] = filteredArray[i]['Opening Rank']
+                closing[5] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2022 && filteredArray[i]['Round']== 6){
+                opening[6] = filteredArray[i]['Opening Rank']
+                closing[6] = filteredArray[i]['Closing Rank']
+            }
+            if (filteredArray[i]['Year']== 2023 && filteredArray[i]['Round']== 6){
+                opening[7] = filteredArray[i]['Opening Rank']
+                closing[7] = filteredArray[i]['Closing Rank']
+            }
+        }
+
+        r= Math.floor(Math.random()*255)
+        g= Math.floor(Math.random()*255)
+        b= Math.floor(Math.random()*255)
+        background_color = 'rgba('+r+','+g+','+b+',0.5)'
+        border_color = 'rgba(1,1,1,1)'
+
+        line_data={
+            label: String.fromCharCode(label_data),
+            data: closing,
+            borderWidth: 1,
+            backgroundColor: background_color,
+            borderColor: border_color 
+        }
+        
+        mychart.data.datasets.push(line_data)
+        mychart.update()
+
+
+        table = document.getElementById("table")
+        row = table.insertRow(table.rows.length)
+        cell1 = row.insertCell(0)
+        cell2 = row.insertCell(1)
+        cell3 = row.insertCell(2)
+        cell4 = row.insertCell(3)
+        cell5 = row.insertCell(4)
+        cell6 = row.insertCell(5)
+        cell7 = row.insertCell(6)
+        row.className=`${String.fromCharCode(label_data)}`
+        
+        cell1.innerHTML = String.fromCharCode(label_data)
+        cell2.innerHTML = inst_name
+        cell3.innerHTML = branch
+        cell4.innerHTML = quota
+        cell5.innerHTML = category
+        cell6.innerHTML = gender
+        cell7.innerHTML = `<button class='btn'>Delete</button>`
+
+        head=document.querySelector('head')
+        head.innerHTML+=`<style> .${String.fromCharCode(label_data)}{
+            background-color: ${background_color}
+        }</style>`
+
+        label_data+=1
+        }
+    
+    }
+
+    table=document.getElementById('table')
+
+    addEventListener('click',function(e){
+        if (e.target.classList.contains('btn')) {
+            var row = e.target.parentNode.parentNode.rowIndex
+            label = e.target.parentNode.parentNode.firstElementChild.innerHTML
+            table.deleteRow(row)
+
+            for (let index = 0; index < mychart.data.datasets.length; index++) {
+                const element = mychart.data.datasets[index];
+                if (element['label']==label) {
+                    if(index==0){
+                        mychart.data.datasets.shift()
+                    }
+                    else{
+                        var result = mychart.data.datasets.slice(0, index).concat(mychart.data.datasets.slice(index + 1));
+                        mychart.data.datasets = result
+                    }
+                    mychart.update()
+                }
+            }
+            
+        }
+    })
+</script>
+{% endblock scripts %}
+

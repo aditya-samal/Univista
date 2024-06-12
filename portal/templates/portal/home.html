@@ -1,0 +1,18 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'portal/main.css' %}"> 
+{% endblock stylesheet %}
+{% block content %}
+    <div class="Content">
+        <p class="Title">College Selection Process Made Easy!</p>
+        <p class="Subtitle"> Confused about your college choices? We have for you some amazing tools to make your college selection process super easy.</p>
+        <a class="GetStarted" href="{% url 'register' %}">
+            Register/Login
+        </a>
+    </div>  
+{% endblock content %}
+                
+                    
+                
+    

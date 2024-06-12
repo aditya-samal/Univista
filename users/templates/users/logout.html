@@ -1,0 +1,14 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+        <div class="content">
+            <p class="p">You have been logged out</p>
+        
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Want to login again?<a class="ml-2" href="{% url 'login' %}">Log In</a>
+                </small>
+            </div>
+        </div>
+{% endblock content %}
+       

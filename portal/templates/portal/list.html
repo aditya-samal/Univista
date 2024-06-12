@@ -1,0 +1,169 @@
+{% extends "portal/base.html" %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'portal/list.css' %}"> 
+{% endblock stylesheet %}
+{% block content %}
+    <div class="body">
+        <h1 class="title">Make your preference list </h1>
+        <hr>
+        <div class="content">
+            <div class="select">
+                    <div class="option1">
+                        <label>Institute Type</label>
+                        <select id="type" name="type" onchange='add_name()'>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Indian Institute of Technology">Indian Institute of Technology</option>
+                            <option value="National Institute of Technology">National Institute of Technology</option>
+                            <option value="Indian Institute of Information Technology">Indian Institute of Information Technology</option>
+                            <option value="Government Funded Technical Institutions">Government Funded Technical Instituitions</option>
+                        </select>
+                    </div>
+            
+                    <div class="option1">
+                        <label>Institute Name</label>
+                        <select id="name" name="name" onchange="add_branch()">
+                            <option value="" disabled selected>Select</option>
+                        </select>
+                    </div>
+            
+        
+                    <div class="option2">
+                        <label>Academic Program Name</label>
+                        <select id="branch" name="branch">
+                            <option value="" disabled selected>Select</option>
+                        </select>
+                    </div>
+                    <div class="btn">
+                        <button id="addRowbtn">ADD</button>
+                    </div>
+            </div>
+            <hr>
+            <div class="table">
+                <table id="table">
+                    <thead>
+                        <tr class="table_head">
+                            <th>Serial No.</th>
+                            <th>Institute</th>
+                            <th>Branch</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    
+    </div>
+
+
+{% endblock content %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+
+    var data = []
+    d3.csv("{% static 'portal/data/File.csv' %}").then(function(datapoints){
+    data= datapoints
+    })
+
+function add_name(){
+    type=document.getElementById('type').value
+    const filteredArray = data.filter(r=> r['Type']===type)
+    const uniquenames = new Set();
+    filteredArray.forEach(r => uniquenames.add(r['Institute']));
+    const uniquelist = [...uniquenames]
+    var commonOptions = "<option value='' disabled selected>Select</option>";
+    for (i in uniquelist){
+        commonOptions+="<option>"+uniquelist[i]+"</option>"
+    }
+    document.getElementById("name").innerHTML=commonOptions
+}
+
+function add_branch(){
+    inst_name=document.getElementById('name').value
+    const filteredArray = data.filter(r=> r['Institute']===inst_name)
+    const uniquenames = new Set();
+    filteredArray.forEach(r => uniquenames.add(r['Academic Program Name']));
+    const uniquelist = [...uniquenames]
+    var commonOptions = "<option value='' disabled selected>Select</option>";
+    for (i in uniquelist){
+        commonOptions+="<option>"+uniquelist[i]+"</option>"
+    }
+    document.getElementById("branch").innerHTML=commonOptions
+}
+
+    const ins = document.getElementById("name");
+    const branch = document.getElementById("branch");
+    const addbtn= document.getElementById("addRowbtn");
+    const table = document.getElementById("table").getElementsByTagName("tbody")[0];
+    let s_no = 1;
+    addRowbtn.addEventListener('click',()=>{
+        const institute = ins.value;
+        const br = branch.value;
+        if(institute && br)
+        {
+            const rowNew = table.insertRow();
+            rowNew.className='table_row';
+            rowNew.innerHTML=`
+                <td>${s_no++}</td>
+                <td>${institute}</td>
+                <td>${br}</td>
+                <td>
+                    <button class="moveUp move">Up</button>
+                </td>
+                <td>
+                    <button class="moveDown move">Down</button>
+                </td>
+                <td>
+                    <button class="delete">Delete</button>
+                </td>`
+                rowNew.querySelector(".delete").addEventListener("click",function(){
+                    rowNew.remove();
+                    updates_no();
+                });
+                rowNew.querySelector(".moveUp").addEventListener("click",function(){
+                    const rowBefore = rowNew.previousElementSibling;
+                    if(rowBefore){
+                        table.insertBefore(rowNew,rowBefore);
+                        updates_no();
+                    }
+                });
+                rowNew.querySelector(".moveDown").addEventListener("click",function(){
+                    const rowAfter = rowNew.nextElementSibling;
+                    if(rowAfter){
+                        table.insertBefore(rowAfter,rowNew);
+                        updates_no();
+                    }
+                });
+        }
+    });
+
+    function updates_no(){
+        const rows = table.getElementsByTagName('tr');
+        s_no=1;
+        Array.from(rows).forEach((row, index) => {
+            row.cells[0].innerText = s_no++;
+        });
+    }
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#addRowbtn").bind("click", function () {
+            $("#type")[0].selectedIndex = 0;
+            $("#name")[0].selectedIndex = 0;
+            $("#branch")[0].selectedIndex = 0;
+        });
+    });
+</script>
+
+{% endblock scripts %}
