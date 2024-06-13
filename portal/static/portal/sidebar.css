@@ -88,7 +88,7 @@ label #cancel{
 }
 #check:checked ~ label #cancel{
      right:25%;
-     top: 30%;
+     top: 3%;
      display: block;
      animation-name:slideLeft;
      animation-duration: 0.8s;
