@@ -123,3 +123,11 @@ th,tr{
     text-align: center;
     align-content:center;
 }
+
+.PDF{
+    position: relative;
+}
+#print{
+    position: absolute;
+    right: 0%;
+}

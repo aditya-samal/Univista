@@ -1,6 +1,7 @@
 
 body{
     margin:0px;
+    overflow-x: hidden;
     height: 100vh;
 }
 
@@ -89,18 +90,16 @@ select{
 }
 
 .bottom{
-    margin-top: 30px;
+    margin: 5%;
     width: 90%;
 }
 
 .canvas{
-    width: 90%;
-    margin: 5%;
+    width: 100%;
 }
 
 .table{
-    width: 90%;
-    margin: 5%;
+    width: 100%;
     overflow-x: auto;
 }
 
