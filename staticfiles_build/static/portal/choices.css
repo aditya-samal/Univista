@@ -102,6 +102,7 @@ select{
 .table{
     width: 90%;
     margin: 5%;
+    margin-right: 30px;
     overflow-x: auto;
 }
 
