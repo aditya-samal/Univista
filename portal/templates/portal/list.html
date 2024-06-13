@@ -57,7 +57,9 @@
                 </table>
             </div>
         </div>
-
+        <div class="PDF">
+            <button id="print" onclick="printTableToPDF()">GENERATE PDF</button>
+        </div>
     
     </div>
 
@@ -67,6 +69,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs+/u5c3+1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
 <script>
 
@@ -154,6 +158,35 @@ function add_branch(){
             row.cells[0].innerText = s_no++;
         });
     }
+
+        function printTableToPDF() {
+            console.log(1)
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const table = document.getElementById("table");
+            const rows = [];
+            const headers = [];
+            for (let i = 0; i < table.rows[0].cells.length; i++) {
+                if (i < 3) {
+                    headers.push(table.rows[0].cells[i].innerText);
+                }
+            }
+            for (let i = 1; i < table.rows.length; i++) {
+                const row = [];
+                for (let j = 0; j < table.rows[i].cells.length; j++) {
+                    if (j < 3) {
+                        row.push(table.rows[i].cells[j].innerText);
+                    }
+                }
+                rows.push(row);
+            }
+
+            doc.autoTable({
+                head: [headers],
+                body: rows,
+            });        
+            doc.save('table.pdf');
+        }
 
 </script>
 <script type="text/javascript">
