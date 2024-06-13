@@ -100,9 +100,8 @@ select{
 }
 
 .table{
-    width: 90%;
+    width: 80%;
     margin: 5%;
-    margin-right: 30px;
     overflow-x: auto;
 }
 
