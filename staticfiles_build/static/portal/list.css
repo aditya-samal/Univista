@@ -1,14 +1,15 @@
 body{
     margin:0px;
     overflow-x: hidden;
-    height: 100vh;
-   
+    height: 100vh;  
 }
+
 .body{
     margin-left: 60px;
     margin-right: 60px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 .Navbar{
     background-image: url(Nav_back.png);
     background-repeat: no-repeat;
@@ -71,20 +72,20 @@ select{
     width: 100%;
     /* margin: 5%; */
     overflow-x: auto;
-
 }
 
 .table_head{
     background-color:rgb(134, 90, 9);
     color: whitesmoke;
 }
+
 .content{
     width: 100%;
 }
+
 button{
     color: rgb(118, 81, 12);
-    background-color: whitesmoke;
-   
+    background-color: whitesmoke;   
     padding:5px 15px;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
@@ -92,6 +93,7 @@ button{
     margin: 5px;
     border-radius: 10px;
 }
+
 button:hover{
     background-color:rgb(134, 90, 9);
     color: whitesmoke;
@@ -105,6 +107,7 @@ button:hover{
     background-color:rgb(134, 90, 9);
     padding:11px 25px;
 }
+
 #addRowbtn:hover{
     color: rgb(118, 81, 12);
     background-color: whitesmoke;
@@ -112,13 +115,16 @@ button:hover{
     transition-duration: 0.5s;
     cursor: pointer;
 }
+
 .table_row{
     background-color: rgb(237, 232, 232);
 }
+
 .table_head{
     justify-content: center;
     align-items: center;
 }
+
 th,tr{
     text-align: center;
     align-content:center;
@@ -127,4 +133,19 @@ th,tr{
 .PDF{
     display: flex;
     justify-content: end;
+    padding-bottom: 20px;
+}
+
+#print{
+    color:white;
+    background-color:rgb(134, 90, 9);
+    padding:11px 25px;
+}
+
+#print:hover{
+    color: rgb(118, 81, 12);
+    background-color: whitesmoke;
+    scale: 1.02;
+    transition-duration: 0.5s;
+    cursor: pointer;
 }
