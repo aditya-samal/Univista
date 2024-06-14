@@ -58,8 +58,9 @@ label #btn, label #cancel{
 }
 
 label #btn{
+    position: fixed;
     right:2%;
-    top: 5%;
+    top: 1%;
     font-size: 35px;
     color: white;
     transition: all 0.5s ease;
@@ -104,4 +105,15 @@ label #cancel{
 
 @keyframes slideLeft{
     from{transform:translateX(4000%)}
+}
+
+
+.logo{
+    width: 200px;
+    filter: invert(100%);
+}
+
+#Logo{
+    padding: 0px;
+    padding-top: 1%;
 }
