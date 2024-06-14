@@ -62,6 +62,8 @@
     <div class="bottom">
         <div class="canvas" id="canvas">
             <canvas id="myChart"></canvas>
+            <button class="chart" id="line">Line Chart</button>
+            <button class="chart" id="bar">Bar Chart</button>
         </div>
         <div class="table">
             <table id="table">
@@ -173,6 +175,12 @@
     }
 
     label_data=65
+    const line=document.getElementById('line');
+    const bar=document.getElementById('bar');
+
+    line.addEventListener('click',changeline);
+    bar.addEventListener('click',changebar);   
+
     const ctx = document.getElementById('myChart');
     const mychart= new Chart(ctx, {
         type: 'bar',
@@ -198,6 +206,18 @@
             }
         }
     });
+
+    function changeline(){
+    const updatetype='line';
+    mychart.config.type=updatetype;
+    mychart.update();
+    }; 
+
+    function changebar(){
+    const updatetype='bar';
+    mychart.config.type=updatetype;
+    mychart.update();
+    };
 
 
     function Add_Chart(){

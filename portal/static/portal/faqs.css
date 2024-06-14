@@ -89,3 +89,16 @@ body{
     transition-duration: 0.5s;
     cursor: pointer;
 }
+#myChart6{
+    height: 100px;
+    margin-top: 20px;
+}
+.pannel6{
+    
+    display: none;
+}
+.p6{
+    color: rgba(1,1,1,0.7);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
