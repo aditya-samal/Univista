@@ -1,15 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'users/profile.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'users/register_login_out.css' %}">
+{% extends "users/base.html" %}
+
+
+{% block content %}
     
-</head>
-<body>
     <div class="content-section">
         <div class="media">
                 <div class="Img">
@@ -21,18 +14,9 @@
                     <p class="email">{{ user.email }}</p>
                 </div>
         </div>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form.email }}
-                {{ p_form }}
-            </fieldset>
-            <div class="form-group">
-                 <button class="btn btn-outline-info" type="submit">Update</button>
-            </div>
-        </form> 
-     </div>
-</body>
-</html>
+            <button class="logout" type="submit">Logout</button>
+        </form>
+{% endblock content %}
    

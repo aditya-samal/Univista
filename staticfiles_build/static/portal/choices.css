@@ -112,3 +112,19 @@ th,tr{
     text-align: center;
     align-content:center;
 }
+.chart{
+    background-color:white;
+    color: rgb(134, 90, 9);
+    padding: 10px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 5px;
+}
+.chart:hover{
+    color: white;
+    background-color: rgb(118, 81, 12);
+    scale: 1.02;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
