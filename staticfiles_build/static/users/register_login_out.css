@@ -144,8 +144,8 @@ label{
      transition-duration: 0.3s;
 }
 .profile_pic{
-    width:35%;
-    margin-left:30%;
+    width:150px;
+    
 }
 .SideBar{
     display: grid;
@@ -246,6 +246,7 @@ label #cancel{
     from{transform:translateX(4000%)}
 }
 .username{
+    
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: xx-large;
     text-align: center;
@@ -278,4 +279,12 @@ label #cancel{
     color: white;
     transition-duration: 0.5s;
     cursor:pointer;
+}
+.media{
+     display: grid;
+     grid-template-rows:3fr 1fr;
+}
+.media-body{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
