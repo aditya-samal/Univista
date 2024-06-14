@@ -43,12 +43,14 @@ body{
     scale: 1.02;
     transition-duration: 0.5s;
     cursor: pointer;
+    z-index: 50;
 
 }
 .pannel{
     padding: 0.5rem 2rem 2.5rem 2rem;
     overflow: hidden;
     display: none;
+    
 }
 .pannel p{
     color: rgba(1,1,1,0.7);
@@ -71,6 +73,7 @@ body{
     width: 100%;
     align-items: center;
     top: 0;
+    z-index: 100;
 
 }
 .chart{
