@@ -97,11 +97,14 @@ body{
     margin-top: 20px;
 }
 .pannel6{
-    
+    grid-template-columns: 2fr 1fr;
     display: none;
 }
 .p6{
     color: rgba(1,1,1,0.7);
     font-size: 1.2rem;
     line-height: 1.4;
+}
+#canvas5{
+    width: 100%;
 }

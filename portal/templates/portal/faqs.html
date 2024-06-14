@@ -312,7 +312,7 @@ bar2.addEventListener('click',changebar2);
 
 var ctx2 = document.getElementById('myChart2').getContext('2d');
 const chart2 = new Chart(ctx2,{
-    type:'line',
+    type:'bar',
     data:{
         labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
         datasets: [{ label: 'EEE IITG',
@@ -359,7 +359,7 @@ bar3.addEventListener('click',changebar3);
 
 var ctx3 = document.getElementById('myChart3').getContext('2d');
 const chart3 = new Chart(ctx3,{
-    type:'line',
+    type:'bar',
     data:{
         labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
         datasets: [{ label: 'IISc Bangalore',
@@ -401,7 +401,7 @@ bar4.addEventListener('click',changebar4);
 
 var ctx4 = document.getElementById('myChart4').getContext('2d');
 const chart4 = new Chart(ctx4,{
-    type:'line',
+    type:'bar',
     data:{
         labels: ['2019','2020','2021','2022','2023'],
         datasets: [{ label: 'IIT Bombay',
@@ -419,7 +419,9 @@ const chart4 = new Chart(ctx4,{
     }]
     
     
-}
+    
+    }
+
 });
 function changeline4(){
     const updatetype='line';
@@ -567,7 +569,7 @@ for(i=0;i<acc.length;i++)
             }
             else{
                 pannel6.style.display = 'grid';
-                pannel6.style.gridTemplateColumns = 'repeat(2, 1fr)';;
+                
             }
         });
     
