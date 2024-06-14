@@ -203,8 +203,9 @@ label #btn, label #cancel{
     cursor: pointer;
 }
 label #btn{
+    position: fixed;
     right:2%;
-    top: 3%;
+    top: 1%;
     font-size: 35px;
     color: white;
     transition: all 0.5s ease;
@@ -220,9 +221,10 @@ label #btn{
     padding: 30px;
 }
 label #cancel{
+    position: fixed;
     z-index: 1111;
     display: none;
-    top:3%;
+    top:5%;
     color:white;
     font-size: x-large;
    
@@ -237,7 +239,7 @@ label #cancel{
     pointer-events: none;
 }
 #check:checked ~ label #cancel{
-     right:28%;
+     right:25%;
      display: block;
      animation-name:slideLeft;
      animation-duration: 0.8s;
@@ -281,10 +283,41 @@ label #cancel{
     cursor:pointer;
 }
 .media{
-     display: grid;
-     grid-template-rows:3fr 1fr;
+    flex-direction: column;
 }
 .media-body{
     display: grid;
     grid-template-rows: 1fr 1fr;
+    width: 100%;
+    align-items: center;
+}
+
+.Img{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.profile_pic{
+    justify-self: center;
+}
+
+.username{
+    margin-bottom: 0px;
+}
+
+.username, .email{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.logo{
+    width: 200px;
+    filter: invert(100%);
+}
+
+#Logo{
+    padding: 0px;
+    padding-top: 1%;
 }

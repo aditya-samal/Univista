@@ -310,3 +310,14 @@ label #cancel{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+
+.logo{
+    width: 200px;
+    filter: invert(100%);
+}
+
+#Logo{
+    padding: 0px;
+    padding-top: 1%;
+}
