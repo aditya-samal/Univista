@@ -5,9 +5,6 @@
 {% endblock stylesheet %}    
 {% block content %}  
        <div class="wrapper">
-            <h2>Quick peek
-                <i class="fa fa-eyes"></i>
-            </h2>
             <h1>Frequently Asked Questions(FAQs)</h1>
             <div class="faq">
                 <button class="accordion">
@@ -128,20 +125,25 @@
                      </div>
                 </div>
             </div>
+
+
             <div class="faq">
                 <button class="accordion accordian6">
                     What is the category wise seat matrix in IITs in academic year 2024?
                     <i class="fa fa-chevron-down"></i>
                 </button>
-                <div class="pannel6">
-                    <div class>
-                        <p class="p6">
-                            Approximately 17,485 seats are available across all IITs for the 2024 academic year.
-                            <br>
-                            <br>
-                            There are 1,692 supernumerary seats specifically reserved for female candidates to promote gender diversity.
-                            <br>
-                            5% of the seats in each category is reserved for PWD students.
+
+                <div class="pannel">
+                    <div class= "donut">
+                        <div>
+                            <p class="p6">
+                                Approximately 17,485 seats are available across all IITs for the 2024 academic year.
+                                <br>
+                                <br>
+                                There are 1,692 supernumerary seats specifically reserved for female candidates to promote gender diversity.
+                                <br>
+                                5% of the seats in each category is reserved for PWD students.
+                            </p>
                             <ul class="p6">
                                 <li>General (Open): 6,383</li>
                                 <li>General-PwD: 346</li>
@@ -153,23 +155,24 @@
                                 <li>SC-PwD: 122</li>
                                 <li>ST: 1,179</li>
                                 <li>ST-PwD</li>
-                            </ul>
-                            
-                        </p>
+                            </ul> 
+                        </div>
+                        <div id="canvas6">
+                            <canvas id="myChart6"></canvas>
+                        </div>
+    
                     </div>
-                    <div id="canvas6">
-                        <canvas id="myChart6"></canvas>
-                        <hr>
-                        
-                     </div>
                 </div>
             </div>
+
+
             <div class="faq">
                 <button class="accordion">
                      What is the club culture of IITs?
                     <i class="fa fa-chevron-down"></i>
                 </button>
                 <div class="pannel">
+
                     <div>
                         <p>
                             The club culture at different Indian Institutes of Technology (IITs) is vibrant and diverse, reflecting the interests and talents of their students. Each IIT has a unique mix of clubs and societies catering to a wide range of activities, from technical and academic interests to cultural and recreational pursuits. 
@@ -182,14 +185,14 @@
                             <p>Additionally, IITs host annual fests where these clubs often showcase their activities and achievements, adding to the vibrant campus life.</p>
                         </p>
                     </div>
+
                     <div id="canvas6">
                         <canvas id="myChart6"></canvas>
-                        <hr>
-                        
-                     </div>
+                        <hr>   
+                    </div>
+
                 </div>
             </div>
-
         </div>
            
 
@@ -452,7 +455,7 @@ const chart5= new Chart(ctx5,{
                      data:cr_fem_cse
     },{
                     label: 'EEE',
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'rgb(200,180,220)',
                     data:cr_fem_eee
     }
                     
@@ -558,21 +561,6 @@ for(i=0;i<acc.length;i++)
             }
         });
     }
-    var acc6= document.querySelector('.accordion6');
-
-        acc6.addEventListener('click',function(){
-            
-
-            var pannel6=this.nextElementSibling;
-            if(pannel6.style.display === 'grid'){
-                pannel6.style.display = 'none';
-            }
-            else{
-                pannel6.style.display = 'grid';
-                
-            }
-        });
-    
 
   </script>
 {% endblock scripts %}
