@@ -10,12 +10,12 @@
     transition: all 0.8s ease;
     top: 0%;
 }
+
 .Items{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-   
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;   
 }
+
 .NavItem a{
     color: white;
     font-size:130%;
@@ -23,10 +23,12 @@
     opacity:2;
     text-decoration: none;
 }
+
 .NavItem a i{
     color: white;
-   margin-right: 3%;
+    margin-right: 3%;
 }
+
 .NavItem{
    text-align: center;
    box-sizing: border-box;
@@ -34,12 +36,14 @@
    border-top: 1px solid rgba(255,255,255,.1);
    border-bottom: 1px solid black;
 }
+
 .NavItem:hover{
     color: white;
     background-color: black;
     transition-duration: 0.5s;
     opacity:1;
 }
+
 .NavItem a:hover{
     text-decoration: none;
 }
@@ -52,15 +56,16 @@ label #btn, label #cancel{
     position: absolute;
     cursor: pointer;
 }
+
 label #btn{
     right:2%;
-    top: 3%;
+    top: 5%;
     font-size: 35px;
     color: white;
     transition: all 0.5s ease;
-    padding: 30px;
-   
+    padding: 30px; 
 }
+
 .Logo-Name{
     color: white;
     margin-left: 1%;
@@ -69,30 +74,34 @@ label #btn{
     font-family:cursive;
     padding: 30px;
 }
+
 label #cancel{
     z-index: 1111;
     display: none;
-    top:3%;
+    top:5%;
     color:white;
-    font-size: x-large;
-   
+    font-size: x-large;  
 }
 
 #check:checked ~ .SideBar{
     right: 0%;
 }
+
 #check:checked ~ label #btn{
     right: 40%;
     opacity: 0;
     pointer-events: none;
 }
+
 #check:checked ~ label #cancel{
-     right:25%;
+    position: fixed; 
+    right:25%;
      top: 5%;
      display: block;
      animation-name:slideLeft;
      animation-duration: 0.8s;
 }
+
 @keyframes slideLeft{
     from{transform:translateX(4000%)}
 }
