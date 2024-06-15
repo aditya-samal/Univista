@@ -109,11 +109,9 @@ label #cancel{
 
 
 .logo{
-    width: 200px;
+    position: fixed;
     filter: invert(100%);
-}
-
-#Logo{
-    padding: 0px;
-    padding-top: 1%;
+    top: 2%;
+    left: 2%;
+    transition: none;
 }
