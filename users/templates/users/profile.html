@@ -14,7 +14,7 @@
 <body>
     <div class="Navbar">
         <div class="Logo-Name" id="Logo">
-            <img class="logo" src="{% static 'portal/logo.png' %}">    
+            <img class="logo" src="{% static 'portal/logo.png' %}"></img>  
         <div>
         <input type="checkbox" id="check">
             <label for="check">
@@ -22,7 +22,7 @@
                 <i class="fa fa-times" id="cancel"></i>
             </label>
        <div class="SideBar">
-          <div></div>
+          <div class="Empty"></div>
           <div class="Items">
             <div class="NavItem"><a href="{% url 'profile' %}"><i class="fa fa-user"></i>View Profile</a></div>
             <div class="NavItem"><a href="{% url 'portal-home' %}"><i class="fa fa-qrcode"></i>Home</a></div>
@@ -33,7 +33,7 @@
             <div class="NavItem"><a href="{% url 'portal-faqs' %}"><i class="fa fa-envelope"></i>FAQs</a></div>
             <div class="NavItem"><a href="{% url 'logout' %}"><i class="fa fa-circle"></i>Log Out</a></div>
           </div>
-          <div></div>
+          <div class="Empty"></div>
         </div>
     </div> 
     <div class="content-section">
