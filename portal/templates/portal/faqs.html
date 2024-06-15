@@ -56,6 +56,44 @@
             </div>
 
             <div class="faq">
+                <button class="accordion accordian6">
+                    What is the category wise seat matrix in IITs in academic year 2024?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+
+                <div class="pannel">
+                    <div class= "donut">
+                        <div>
+                            <p class="p6">
+                                Approximately 17,485 seats are available across all IITs for the 2024 academic year.
+                                <br>
+                                <br>
+                                There are 1,692 supernumerary seats specifically reserved for female candidates to promote gender diversity.
+                                <br>
+                                5% of the seats in each category is reserved for PWD students.
+                            </p>
+                            <ul class="p6">
+                                <li>General (Open): 6,383</li>
+                                <li>General-PwD: 346</li>
+                                <li>EWS: 1,568</li>
+                                <li>EWS-PwD: 84</li>
+                                <li>OBC-NCL: 4,259</li>
+                                <li>OBC-NCL-PwD: 226</li>
+                                <li>SC: 2,370</li>
+                                <li>SC-PwD: 122</li>
+                                <li>ST: 1,179</li>
+                                <li>ST-PwD</li>
+                            </ul> 
+                        </div>
+                        <div id="canvas6">
+                            <canvas id="myChart6"></canvas>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq">
                 <button class="accordion">
                      Are IITs overrated? Are IITs worth the hype?
                     <i class="fa fa-chevron-down"></i>
@@ -109,62 +147,6 @@
                          </p>
                 </div>
             </div>
-            <div class="faq">
-                <button class="accordion">
-                    How has female reservation increased over the years?
-                    <i class="fa fa-chevron-down"></i>
-                </button>
-                <div class="pannel">
-                    <p>
-                    </p>
-                    <div id="canvas5">
-                        <canvas id="myChart5"></canvas>
-                        <hr>
-                        <button class="chart" id="line5">Line Chart</button>
-                        <button class="chart" id="bar5">Bar Chart</button>
-                     </div>
-                </div>
-            </div>
-
-
-            <div class="faq">
-                <button class="accordion accordian6">
-                    What is the category wise seat matrix in IITs in academic year 2024?
-                    <i class="fa fa-chevron-down"></i>
-                </button>
-
-                <div class="pannel">
-                    <div class= "donut">
-                        <div>
-                            <p class="p6">
-                                Approximately 17,485 seats are available across all IITs for the 2024 academic year.
-                                <br>
-                                <br>
-                                There are 1,692 supernumerary seats specifically reserved for female candidates to promote gender diversity.
-                                <br>
-                                5% of the seats in each category is reserved for PWD students.
-                            </p>
-                            <ul class="p6">
-                                <li>General (Open): 6,383</li>
-                                <li>General-PwD: 346</li>
-                                <li>EWS: 1,568</li>
-                                <li>EWS-PwD: 84</li>
-                                <li>OBC-NCL: 4,259</li>
-                                <li>OBC-NCL-PwD: 226</li>
-                                <li>SC: 2,370</li>
-                                <li>SC-PwD: 122</li>
-                                <li>ST: 1,179</li>
-                                <li>ST-PwD</li>
-                            </ul> 
-                        </div>
-                        <div id="canvas6">
-                            <canvas id="myChart6"></canvas>
-                        </div>
-    
-                    </div>
-                </div>
-            </div>
-
 
             <div class="faq">
                 <button class="accordion">
@@ -193,6 +175,24 @@
 
                 </div>
             </div>
+
+            <div class="faq">
+                <button class="accordion">
+                    How has female reservation increased over the years?
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="pannel">
+                    <p>
+                    </p>
+                    <div id="canvas5">
+                        <canvas id="myChart5"></canvas>
+                        <hr>
+                        <button class="chart" id="line5">Line Chart</button>
+                        <button class="chart" id="bar5">Bar Chart</button>
+                     </div>
+                </div>
+            </div>
+
         </div>
            
 
@@ -275,16 +275,16 @@ const chart = new Chart(ctx,{
                      data:cr_g
     },{
                     label: 'EEE in IIT Delhi',
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'rgb(100,210,210)',
                     data:cr_d
     },{
                     label: 'Civil in IIT Bombay',
-                    backgroundColor: 'red',
+                    backgroundColor: 'rgba(255,153,102,0.8)',
                     data:cr_b
 
     },{            
                     label: 'CSE in IIT Patna',
-                    backgroundColor: 'pink',
+                    backgroundColor: 'rgba(102,217,255)',
                     data:cr_p
 
     }]
@@ -306,6 +306,81 @@ function changebar(){
    
 };
 
+const ctx6 = document.getElementById('myChart6').getContext('2d');
+const data1 = {
+    labels: ['OPEN','EWS','SC','ST','OBC-NCL'],
+    datasets: [{
+        data: [22349,5440,8099,4548,13968],
+    }]
+};
+const options = {
+    plugins: {
+        legend: {
+            display: false
+        }
+}
+};
+
+const edgeTextPlugin = {
+    id: 'edgeText',
+    afterDatasetsDraw(chart) {
+        const ctx = chart.ctx;
+        const dataset = chart.data.datasets[0];
+        const total = dataset.data.reduce((acc, val) => acc + val, 0);
+
+        chart.data.labels.forEach((label, i) => {
+            const value = dataset.data[i];
+            const percentage = ((value / total) * 100).toFixed(2) + '%';
+            const meta = chart.getDatasetMeta(0).data[i];
+            const startAngle = meta.startAngle;
+            const endAngle = meta.endAngle;
+            const midAngle = startAngle + (endAngle - startAngle) / 2;
+            const radius = meta.outerRadius/1.3;
+
+            const posX = meta.x + radius * Math.cos(midAngle);
+            const posY = meta.y + radius * Math.sin(midAngle);
+
+            ctx.fillStyle = 'black';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.font = '16px Arial';
+
+            ctx.fillText(label, posX, posY - 10);
+            ctx.fillText(percentage, posX, posY + 10);
+        });
+    }
+};
+
+Chart.register(edgeTextPlugin);
+
+const myDoughnutChart = new Chart(ctx6, {
+    type: 'doughnut',
+    data: data1,
+    options: options,
+});       
+
+
+
+
+
+var acc= document.querySelectorAll('.accordion');
+var i;
+for(i=0;i<acc.length;i++)
+{
+acc[i].addEventListener('click',function(){
+    
+
+    var pannel=this.nextElementSibling;
+    if(pannel.style.display === 'block'){
+        pannel.style.display = 'none';
+    }
+    else{
+        pannel.style.display = 'block';
+    }
+});
+}
+
+
 const line2=document.getElementById('line2');
 const bar2=document.getElementById('bar2');
 
@@ -319,20 +394,20 @@ const chart2 = new Chart(ctx2,{
     data:{
         labels: ['2016','2017','2018','2019','2020','2021','2022','2023'],
         datasets: [{ label: 'EEE IITG',
-                     backgroundColor: 'rgb(255,99,132)',
+                     backgroundColor: 'rgb(255,73,102)',
                      data:cr_g_eee
     },{
                     label: 'ME IITG',
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'rgb(158,109,255)',
                     data:cr_g_mech
     },{
                     label: 'MNC IITG',
-                    backgroundColor: 'red',
+                    backgroundColor: 'rgb(55,174,83)',
                     data:cr_g_mnc
 
     },{            
                     label: 'DSAI IITG',
-                    backgroundColor: 'pink',
+                    backgroundColor: 'rgb(197,228,255)',
                     data:cr_g_ai
 
     }]
@@ -354,6 +429,8 @@ function changebar2(){
    
 };
 
+
+
 const line3=document.getElementById('line3');
 const bar3=document.getElementById('bar3');
 
@@ -370,11 +447,11 @@ const chart3 = new Chart(ctx3,{
                      data:[147,151,185,172,182,182,183,151,225]
     },{
                     label: 'IIT Delhi',
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'rgb(158,187,255)',
                     data:[179,183,175,179,190,185,180,176,197]
     },{
                     label: 'IIT Bombay',
-                    backgroundColor: 'red',
+                    backgroundColor: 'rgb(158,187,67)',
                     data:[202,220,182,176,150,170,175,165,149]
 
     }]
@@ -395,6 +472,7 @@ function changebar3(){
    chart3.update();
    
 };
+
 const line4=document.getElementById('line4');
 const bar4=document.getElementById('bar4');
 
@@ -408,15 +486,15 @@ const chart4 = new Chart(ctx4,{
     data:{
         labels: ['2019','2020','2021','2022','2023'],
         datasets: [{ label: 'IIT Bombay',
-                     backgroundColor: 'rgb(255,99,132)',
+                     backgroundColor: 'rgb(255,197,67)',
                      data:[79,70,74,78,82]
     },{
                     label: 'IIT Delhi',
-                    backgroundColor: 'yellow',
+                    backgroundColor: 'rgb(255,80,67)',
                     data:[87,86,80,78,85]
     },{
                     label: 'IIT Madras',
-                    backgroundColor: 'red',
+                    backgroundColor: 'rgb(111,134,255)',
                     data:[73,76,71,70,80]
 
     }]
@@ -488,79 +566,6 @@ function changebar5(){
 
 
     
-        const ctx6 = document.getElementById('myChart6').getContext('2d');
-        const data1 = {
-            labels: ['OPEN','EWS','SC','ST','OBC-NCL'],
-            datasets: [{
-                data: [22349,5440,8099,4548,13968],
-            }]
-        };
-        const options = {
-            plugins: {
-                legend: {
-                    display: false
-                }
-        }
-};
-
-        const edgeTextPlugin = {
-            id: 'edgeText',
-            afterDatasetsDraw(chart) {
-                const ctx = chart.ctx;
-                const dataset = chart.data.datasets[0];
-                const total = dataset.data.reduce((acc, val) => acc + val, 0);
-
-                chart.data.labels.forEach((label, i) => {
-                    const value = dataset.data[i];
-                    const percentage = ((value / total) * 100).toFixed(2) + '%';
-                    const meta = chart.getDatasetMeta(0).data[i];
-                    const startAngle = meta.startAngle;
-                    const endAngle = meta.endAngle;
-                    const midAngle = startAngle + (endAngle - startAngle) / 2;
-                    const radius = meta.outerRadius/1.3;
-
-                    const posX = meta.x + radius * Math.cos(midAngle);
-                    const posY = meta.y + radius * Math.sin(midAngle);
-
-                    ctx.fillStyle = 'black';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.font = '16px Arial';
-
-                    ctx.fillText(label, posX, posY - 10);
-                    ctx.fillText(percentage, posX, posY + 10);
-                });
-            }
-        };
-
-        Chart.register(edgeTextPlugin);
-
-        const myDoughnutChart = new Chart(ctx6, {
-            type: 'doughnut',
-            data: data1,
-            options: options,
-        });       
-
-       
-
-
-
-var acc= document.querySelectorAll('.accordion');
-var i;
-for(i=0;i<acc.length;i++)
-    {
-        acc[i].addEventListener('click',function(){
-            
-
-            var pannel=this.nextElementSibling;
-            if(pannel.style.display === 'block'){
-                pannel.style.display = 'none';
-            }
-            else{
-                pannel.style.display = 'block';
-            }
-        });
-    }
 
   </script>
 {% endblock scripts %}
