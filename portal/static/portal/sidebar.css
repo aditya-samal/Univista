@@ -9,7 +9,6 @@
     row-gap: 30px;
     transition: all 0.8s ease;
     top: 0%;
-    overflow: scroll;
 }
 
 .Items{
