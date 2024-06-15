@@ -21,6 +21,7 @@ body{
     width: 100%;
     align-items: center;
     top: 0;
+    z-index: 100;
 }
 
 .title{
@@ -106,6 +107,7 @@ button:hover{
     color:white;
     background-color:rgb(134, 90, 9);
     padding:11px 25px;
+    z-index: 50;
 }
 
 #addRowbtn:hover{
@@ -114,6 +116,7 @@ button:hover{
     scale: 1.02;
     transition-duration: 0.5s;
     cursor: pointer;
+    z-index: 50;
 }
 
 .table_row{

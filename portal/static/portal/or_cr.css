@@ -15,6 +15,7 @@ body{
     width: 100%;
     align-items: center;
     top: 0;
+    z-index: 100;
 }
 
 .heading{
@@ -97,12 +98,13 @@ button{
     color: whitesmoke;
        
     padding:5px 15px;
-     border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        margin: 5px;
-        border-radius: 10px;
-    }
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.5);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 5px;
+    border-radius: 10px;
+    z-index: 50;
+}
 button:hover{
   
     scale: 1.02;
@@ -110,4 +112,5 @@ button:hover{
     cursor: pointer;
     color: rgb(118, 81, 12);
     background-color: whitesmoke;
-    }
+    z-index: 50;
+}
