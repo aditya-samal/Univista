@@ -62,7 +62,7 @@ label #btn, label #cancel{
 }
 
 label #btn{
-    position: fixed;
+    position: absolute;
     right:2%;
     top: 1%;
     font-size: 35px;
@@ -114,10 +114,7 @@ label #cancel{
 
 .logo{
     filter: invert(100%);
-    transition: none;
-}
-
-.Logo{
-    padding-top: 1%;
+    padding-top: 1.5%;
     padding-left: 2%;
+    transition: none;
 }
