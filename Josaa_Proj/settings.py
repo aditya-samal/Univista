@@ -78,7 +78,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:OjQDnVOeZsUHXjRyhnzUxdKMFLHIuVBz@roundhouse.proxy.rlwy.net:50728/railway'
+        default='postgresql://univista_user:0gKgWqreLzsb46Z0vrw720DeNz8e11Cv@dpg-cvijskhr0fns738gedr0-a.oregon-postgres.render.com/univista'
     )
 }
 
